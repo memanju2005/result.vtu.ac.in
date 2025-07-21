@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="vtu_logo.png">
+
+    <title>VTU PROVISIONAL RESULT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .header {
+            background-color: #494D56;
+            padding: 10px 0;
+            text-align: center;
+        }
+        
+        .university-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            color: white;
+            
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .logo img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+        }
+        
+        .university-text {
+            text-align: left;
+        }
+        
+        .kannada-text {
+            font-size: 18px;
+            color: #87ceeb;
+            margin-bottom: 5px;
+        }
+        
+        .english-text {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .provisional-header {
+            background-color: #F2BB9D;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        
+        .provisional-kannada {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .provisional-english {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .exam-results-header {
+            background-color: #A5E5B0;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .star-icon {
+            width: 30px;
+            height: 30px;
+            /* background-color: #333; */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .exam-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #4CAF50;
+            background-color: white;
+        }
+        
+        .captcha-container {
+            margin-bottom: 20px;
+        }
+        
+        .captcha-image {
+            width: 100%;
+            height: 120px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            background: linear-gradient(45deg, #f0f0f0 25%, transparent 25%), 
+                        linear-gradient(-45deg, #f0f0f0 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #f0f0f0 75%), 
+                        linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .captcha-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            transform: rotate(-5deg);
+            letter-spacing: 8px;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .captcha-noise {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,0,0,0.1) 2px, rgba(255,0,0,0.1) 4px),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,0,0.1) 2px, rgba(0,255,0,0.1) 4px),
+                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0,0,255,0.1) 2px, rgba(0,0,255,0.1) 4px);
+        }
+        
+        .word-cloud {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            font-size: 8px;
+            color: rgba(0,0,0,0.1);
+            line-height: 1.2;
+            padding: 5px;
+            word-wrap: break-word;
+            z-index: 1;
+        }
+        
+        .refresh-icon {
+            margin-top: 10px;
+            color: #007bff;
+            font-size: 20px;
+            cursor: pointer;
+            text-align: left;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .submit-btn, .cancel-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn {
+            background-color: #A5E5B0;
+            color: #333;
+        }
+        
+        .submit-btn:hover {
+            background-color: #A5E5B0;
+        }
+        
+        .cancel-btn {
+            background-color: #F2BB9D;
+            color: #333;
+        }
+        
+        .cancel-btn:hover {
+            background-color: #F2BB9D;
+        }
+        
+        .footer {
+            background-color: #4a5568;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .footer-kannada {
+            margin-bottom: 10px;
+        }
+        
+        .footer-english {
+            color: #cbd5e0;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            animation: slideIn 0.3s ease;
+        }
+        
+        .modal-content h2 {
+            color: #28a745;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .modal-content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .modal-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            .university-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .university-text {
+                text-align: center;
+                
+            }
+            
+            .container {
+                padding: 0 10px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="university-info">
+            <div class="logo">
+                <img src="vtu_logo.png" alt="" style="border-radius: 50%;">
+            </div>
+            <div class="university-text" >
+                <div class="kannada-text" style="text-align: center;">ವಿಶ್ವೇಶ್ವರಯ್ಯ ತಾಂತ್ರಿಕ ವಿಶ್ವವಿದ್ಯಾಲಯ, ಬೆಳಗಾವಿ</div>
+                <div class="english-text">VISVESVARAYA TECHNOLOGICAL UNIVERSITY, BELAGAVI</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="provisional-header">
+            <div class="provisional-kannada">ವಿ.ತಾ.ವಿ ಸಾಮಯಿಕ ಫಲಿತಾಂಶ.</div>
+            <div class="provisional-english">VTU PROVISIONAL RESULT.</div>
+        </div>
+
+        <div class="exam-results-header">
+            <div class="star-icon">
+                <img src="world.png" alt="" style="width: 20px;height: 20px;">
+            </div>
+            <div>
+                <div class="exam-text">ಜೂನ್ / ಜುಲೈ-೨೦೨೫ ಪರೀಕ್ಷೆಯ ಫಲಿತಾಂಶ.</div>
+                <div class="exam-text">June/July-2025 EXAMINATION RESULTS.</div>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <form id="resultForm">
+                <div class="input-group">
+                    <input type="text" id="usn" class="input-field" placeholder="ENTER USN" required>
+                </div>
+                 <div class="input-group">
+                    <input type="text" id="captcha" class="input-field" placeholder="Enter Captcha Code" required>
+                </div>
+                <div class="captcha-container">
+                    <div class="captcha-image">
+                        <div class="word-cloud">
+                            NOTES IA CAMPUS VALUATION LAB RESULTS MARKS FACULTY STUDENT TECHNOLOGY JOURNAL BOOKS
+                        </div>
+                        <div class="captcha-text">ZyHTTY</div>
+                        <div class="captcha-noise"></div>
+                    </div>
+                    <div class="refresh-icon" style="margin-top: 50px;">
+                        <img src="refrh.jpg" alt="">
+                    </div>
+                </div>
+
+               
+
+                <div class="button-group">
+                    <button type="submit" class="submit-btn">ಸಲ್ಲಿಸಿ / SUBMIT</button>
+                    <button type="button" class="cancel-btn">ರದ್ದುಪಡಿಸಿ / CANCEL</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-kannada">
+            © ೨೦೨೫ ವಿನ್ಯಾಸ ಮತ್ತು ಅಭಿವೃದ್ಧಿಪಡಿಸಿದವರು ಯೋಜನಾ ನಿರ್ವಹಣೆ<br>
+            ವಿಭಾಗ (ಪಿ. ಎಂ. ಸಿ), ವಿ.ತಾ.ವಿ, ಬೆಳಗಾವಿ. ಕರ್ನಾಟಕ. ಭಾರತ.
+        </div>
+        <div class="footer-english">
+            © 2025 Designed & Developed by Project Management Cell<br>
+            (PMC), VTU, Belagavi. Karnataka. India.
+        </div>
+    </div>
+
+    <!-- Modal for success message -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <h2>Success!</h2>
+            <p>Your Scheme B is Successfully canceled and you can proceed with Scheme A</p>
+            <button class="modal-btn" onclick="redirectToVTU()">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // Generate random captcha
+        function generateCaptcha() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.querySelector('.captcha-text').textContent = captcha;
+        }
+
+        // Refresh captcha on click
+        document.querySelector('.refresh-icon').addEventListener('click', generateCaptcha);
+
+        // Form submission
+        document.getElementById('resultForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const usn = document.getElementById('usn').value.trim();
+            const captcha = document.getElementById('captcha').value.trim();
+            const displayedCaptcha = document.querySelector('.captcha-text').textContent;
+            
+            if (!usn) {
+                alert('Please enter USN');
+                return;
+            }
+            
+            if (!captcha) {
+                alert('Please enter captcha code');
+                return;
+            }
+            
+            if (captcha !== displayedCaptcha) {
+                alert('Invalid captcha code. Please try again.');
+                generateCaptcha();
+                document.getElementById('captcha').value = '';
+                return;
+            }
+            
+            // Show success modal
+            document.getElementById('successModal').style.display = 'block';
+        });
+
+        // Cancel button
+        document.querySelector('.cancel-btn').addEventListener('click', function() {
+            document.getElementById('usn').value = '';
+            document.getElementById('captcha').value = '';
+            generateCaptcha();
+        });
+
+        // Redirect function
+        function redirectToVTU() {
+            window.location.href = 'https://results.vtu.ac.in/';
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('successModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Initialize captcha on page load
+        generateCaptcha();
+    </script>
+</body>
+</html>
